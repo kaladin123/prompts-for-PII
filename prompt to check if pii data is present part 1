@@ -1,0 +1,9 @@
+Given a segment of text from a clinical study document, determine the presence of Personally Identifiable Information (PII). PII is information that can be used to distinguish or trace an individual's identity, such as their name, social security number, biometric records, etc., alone, or when combined with other personal or identifying information.
+
+Based on the presence or absence of PII in the text:
+
+1. If PII is detected, return `PII Present`.
+2. If PII is not detected, return `PII data not present`.
+3. If the determination cannot be made clearly, return `Not Able to Decide`.
+
+*Do not make any assumptions. Your evaluation should strictly be based on the presence or absence of PII in the provided text.*
