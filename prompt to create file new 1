@@ -8,3 +8,20 @@ Evaluate the following text for Personally Identifiable Information (PII) relate
 
 Text: [Insert text here]
 
+---------------------------------------------------------------------------------
+**Evaluate the following text based on the definitions provided:
+
+- **PII (Personally Identifiable Information)**: Data that can be used to identify an individual, such as name, age, gender, social security number, address, phone number, etc.
+- **Non-PII**: Data that cannot be used on its own to trace, or identify a specific individual.
+- **Ambiguous Information**: Data that is unclear or uncertain regarding its classification as PII or non-PII.
+
+Given the definitions, return:
+- 1 if the text contains PII.
+- -1 if the text contains non-PII.
+- 0 if the information is ambiguous or you're uncertain.
+
+Do not make assumptions; validate the information properly.
+
+Text: [Insert text here]
+
+
