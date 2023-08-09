@@ -1,0 +1,4 @@
+**Given the text below, determine if it contains Personally Identifiable Information (PII) related to specific fields such as [name, age, gender, etc.]. If the text contains PII related to these fields, return 1. If the text does not contain PII related to these fields, return -1. If you are unsure or cannot definitively decide, return 0. Do not make assumptions; validate the information properly before making a decision.**
+
+Text: [Insert text here]
+
