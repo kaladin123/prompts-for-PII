@@ -22,6 +22,21 @@ Given the definitions, return:
 
 Do not make assumptions; validate the information properly.
 
+-------------------------------------------------------------------------
+Given the context provided, determine if each type of field is considered Personally Identifiable Information (PII) and identify the nature of the entity being discussed (e.g., person, subject, patient). For each field type:
+
+- Return 1 if the field type is considered PII within the context.
+- Return 0 if the field type is not considered PII within the context.
+- Return -1 if the determination cannot be made with certainty for the field type.
+
+Additionally, provide insight into whether the context refers to a person, subject, patient, or another category.
+
+Context: [context_here]
+Types of Fields in Question: [field1_type], [field2_type], [field3_type], ...
+
+Evaluate and provide the result codes for each field type based on the context and the nature of the entity being discussed.
+
+
 Text: [Insert text here]
 
 
