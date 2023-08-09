@@ -2,3 +2,9 @@
 
 Text: [Insert text here]
 
+--------------------------------------------------------------------------------
+
+Evaluate the following text for Personally Identifiable Information (PII) related to fields such as [name, age, gender, etc.]. Return 1 if PII is present, -1 if no PII is present, and 0 if uncertain. Do not make assumptions; validate properly.
+
+Text: [Insert text here]
+
