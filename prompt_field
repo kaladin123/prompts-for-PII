@@ -1,0 +1,29 @@
+**Clinical Regulatory Data & Its Categorization Based on Fields**
+
+Clinical regulatory data refers to information generated, collected, or required during the process of planning, conducting, and monitoring clinical trials. Clinical trials are research studies that test the safety, efficacy, and effectiveness of medical interventions such as new drugs, treatments, medical devices, or procedures.
+
+To ensure the integrity of the data and uphold data privacy and research ethics, it's essential to categorize clinical trial regulatory content appropriately. This categorization tool specifically checks for the presence of specified fields in your text and determines if it's referring to General or Personal Info. Here are some guidelines to help you categorize the content based on its context:
+
+1. **Personal Info**:
+   - **Patient Identifiers**: Content containing names, addresses, birthdates, medical record numbers, or any identifiers that could be linked to individual patients.
+   - **Medical Histories**: Information discussing specific medical conditions, diseases, or treatments of particular patients.
+   - **Informed Consent**: Details about patients giving informed consent to participate in the trial, which could include their reasons for participating.
+   - **Adverse Events**: Information about adverse reactions experienced by specific patients during the trial.
+   - **Demographic Data**: Patient-specific demographic information, such as age, gender, ethnicity, and occupation.
+
+2. **General Info**:
+   - **Study Protocols**: Information outlining the general procedure, objectives, and methods of the clinical trial without naming specific patient data.
+   - **Research Findings**: Generalized results and outcomes of the clinical trial that do not identify individual patients.
+   - **Treatment Methods**: Descriptions of medical interventions or therapies without connecting them to specific patients.
+   - **Statistical Analysis**: Discussions about statistical methods used to analyze trial data without mentioning individual patient details.
+   - **Regulatory Compliance**: Information about adhering to regulatory requirements, protocols, and guidelines without personal identifiers.
+
+**Scenario Example**: Suppose you come across a document discussing the general success rates of a new drug without any mention of individual patient reactions. This would fall under the "General Info" category, specifically "Research Findings."
+
+In summary, the key distinction lies in whether the content is tied to specific individuals, patient data, or personal identifiers (Personal Info) or if it revolves around broader medical concepts, research outcomes, and trial processes (General Info).
+
+**Please input the field you'd like to check (e.g., 'age') and the accompanying text below:**
+
+{field}: {text}
+
+Your task is to carefully examine the provided content for the specified field and determine which category it best fits into based on the context and nature of the information provided.
