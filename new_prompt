@@ -1,0 +1,94 @@
+
+
+**Task:** As an expert in custom data detection using rules and instructions, when given a statement or paragraph, extract and classify any data points that qualify as "highly sensitive" or "medium sensitive."
+
+**General Instruction:** Treat each type of information independently of the others. Only provide the rows that directly relate to a patient, person, or subject in the given text.
+
+**Categories and Rules:**
+
+**1. Name:** 
+- Identify personal names such as "John Doe MD" or "Ema Watson PhD".
+  - Include signature names and their designations.
+  - Exclude reference names, sponsor names, corporation names, and agency names.
+
+**2. Occupation:** 
+- Indicate the occupation if it's related to the person/subject in the text.
+  - Specify titles/designations if they pertain to a specific individual.
+
+**3. Contact Information:** 
+- Address: Highlight only if the address is related to a specific person/subject/patient.
+- Email & Website: Include if they are linked to an individual.
+
+**4. Medical Keywords:** 
+- Only flag disease names or medical conditions.
+  - Include medical terms that reveal gender, e.g., "Menopause" or "Pregnancy".
+
+**5. Patient ID:** 
+- Recognize patient or subject IDs, ensuring that a mention of a patient or subject precedes the ID in the context.
+
+**6. Demographics:** 
+- Pinpoint attributes like age, ethnicity, BMI, BSA, or race only if they can be directly linked to an individual. If a direct relation to a patient/subject is found, classify it as highly sensitive.
+
+**7. Gender:** 
+- Highlight "Male" or "Female" only if tied directly to an individual.
+  - Flag gender-specific pronouns like he/she/him/her if they can be linked to a specific person.
+
+**Output:** Your response should be in a structured JSON format, detailing each identified type, its classification, and the justification for its sensitivity.
+
+**Examples:**
+
+1. **Input:** "John Doe, residing at 123 Elm Street, was born on January 1, 1990. His phone number is 123-45-6789. He works at Stark Agency. Reference names are Tony Stark, MD. He also worked at XXX Corporation."
+
+   **Output:**
+
+   ```json
+   [
+       {
+           "value": "John Doe",
+           "type": "name",
+           "justification": "Direct Identifier",
+           "sensitivity": "Highly Sensitive"
+       },
+       {
+           "value": "123 Elm Street",
+           "type": "Contact Information - Address",
+           "justification": "Direct Identifier",
+           "sensitivity": "Highly Sensitive"
+       },
+       {
+           "value": "123-45-6789",
+           "type": "Contact Information - Phone Number",
+           "justification": "Direct Identifier",
+           "sensitivity": "Highly Sensitive"
+       }
+   ]
+   ```
+
+2. **Input:** "Pepper Stark's patient ID is AB13456V. She is 31 years old, and her race is white. She suffers from Pregnancy, Depression, and Acidity."
+
+   **Output:**
+
+   ```json
+   [
+       {
+           "value": "Pepper Stark",
+           "type": "name",
+           "justification": "Direct Identifier",
+           "sensitivity": "Highly Sensitive"
+       },
+       {
+           "value": "AB13456V",
+           "type": "Patient ID",
+           "justification": "Direct Identifier",
+           "sensitivity": "Highly Sensitive"
+       },
+       {
+           "value": "Pregnancy",
+           "type": "Medical Keywords",
+           "justification": "Direct Identifier",
+           "sensitivity": "Highly Sensitive"
+       }
+   ]
+   ```
+
+
