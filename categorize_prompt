@@ -1,10 +1,13 @@
-Understood. I'll further refine the prompt to ensure that the categorization of features is not based on the product names. Here's the revised prompt:
+Understood. I'll incorporate the mention of product names to help in understanding the functionality of the features but ensure the feature categorization isn't solely based on the product names. Here's the revised prompt:
 
 ---
 
 **Prompt**:
 
-Given the list of product features below, categorize the features into logical categories based on their functionalities, irrespective of specific product names. Ensure the categories are clear, concise, and functionally relevant. The features within each category should be closely related. Provide the output in a dictionary format where the key represents the category name and the value is a list of features under that category.
+Given the list of product features and product names below, categorize the features into logical categories based on their functionalities. The product names are provided to give context about potential functionalities, but the features should not be categorized based on product names alone. Ensure the categories are clear, concise, and functionally relevant. The features within each category should be closely related. Provide the output in a dictionary format where the key represents the category name and the value is a list of features under that category.
+
+**Product Names**: 
+- [List of Product Names]
 
 **Product Features**:
 - [List of Features]
@@ -21,4 +24,4 @@ categories = {
 
 ---
 
-Replace "[List of Features]" with the appropriate feature names for which you need categorization, and the model should provide a categorization in the format indicated by the example output.
+Replace "[List of Product Names]" with the product names and "[List of Features]" with the appropriate feature names for which you need categorization, and the model should provide a categorization in the format indicated by the example output.
