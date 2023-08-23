@@ -1,21 +1,28 @@
 
+Given a list of features extracted from product descriptions, please group these features based on their functionality. Organize the features into categories that best describe their primary use or characteristic. 
 
-Given the following list of feature names related to smartphone and telecommunication technology, categorize them into distinct categories based on their functionality and features. Ensure that all features are grouped appropriately.
+For example:
 
-**Input:**
-
-\[List of feature names\]
-
-**Output:**
-
-Provide a dictionary named `categories` where the keys are the category names and the values are lists of feature names that fit under each category.
-
-**Sample Output Format:**
+Input:
 
 ```
-categories = {
-    "Category Name 1": ["Feature 1", "Feature 2", ...],
-    "Category Name 2": ["Feature A", "Feature B", ...],
-    ...
-}
+features = ["Face ID", "OLED Display", "Waterproof", "Quick Charge"]
 ```
+
+Output:
+
+```
+{{
+    "Display Technologies": ["OLED Display"],
+    "Unlocking Mechanisms": ["Face ID"],
+    "Water Resistance": ["Waterproof"],
+    "Charging Technologies": ["Quick Charge"]
+}}
+```
+
+Now, using the above guidance, please categorize the following features:
+
+```
+feature_names = {feature_names}
+```
+
