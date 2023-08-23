@@ -1,20 +1,21 @@
 
 
-Classify the following list of features into multiple relevant categories. Each category should be based on inherent characteristics, functionalities, or similarities shared among the features. The categorization should not be influenced by the provided product names. The output should encompass a diverse range of categories that represent the breadth of functionalities in the feature list. Please provide the classification in a dictionary format.
+Given the following list of feature names related to smartphone and telecommunication technology, categorize them into distinct categories based on their functionality and features. Ensure that all features are grouped appropriately.
 
-**For Background (Do Not Directly Use for Categorization)**:
-Products: 
-- [List of Product Names]
+**Input:**
 
-**List of Features**:
-- [List of Features]
+\[List of feature names\]
 
-**Desired Output Example**:
+**Output:**
 
-```{
-    "Functionality-Based Category 1": ["Feature 1", "Feature 2", ...],
-    "Functionality-Based Category 2": ["Feature A", "Feature B", ...],
+Provide a dictionary named `categories` where the keys are the category names and the values are lists of feature names that fit under each category.
+
+**Sample Output Format:**
+
+```
+categories = {
+    "Category Name 1": ["Feature 1", "Feature 2", ...],
+    "Category Name 2": ["Feature A", "Feature B", ...],
     ...
 }
 ```
-Ensure that the output contains more than two categories, capturing the diverse functionalities present in the feature list.
