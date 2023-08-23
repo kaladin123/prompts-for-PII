@@ -1,17 +1,20 @@
-Given the list of product features, categorize the features into logical categories based on their inherent functionalities and characteristics. The provided product names are only for contextual understanding and should not dictate the categorization. Ensure the categories are clear, concise, and functionally relevant. The features within each category should be closely related. Provide the output in a dictionary format.
 
-**For Contextual Understanding**:
-Product Names: 
+
+Classify the following list of features into multiple relevant categories. Each category should be based on inherent characteristics, functionalities, or similarities shared among the features. The categorization should not be influenced by the provided product names. The output should encompass a diverse range of categories that represent the breadth of functionalities in the feature list. Please provide the classification in a dictionary format.
+
+**For Background (Do Not Directly Use for Categorization)**:
+Products: 
 - [List of Product Names]
 
-**Product Features**:
+**List of Features**:
 - [List of Features]
 
-**Desired Output Format**:
+**Desired Output Example**:
 
-```python
-categories = {{
-    "Category Name 1": ["Feature 1", "Feature 2", ...],
-    "Category Name 2": ["Feature A", "Feature B", ...],
+```{
+    "Functionality-Based Category 1": ["Feature 1", "Feature 2", ...],
+    "Functionality-Based Category 2": ["Feature A", "Feature B", ...],
     ...
-}}
+}
+```
+Ensure that the output contains more than two categories, capturing the diverse functionalities present in the feature list.
