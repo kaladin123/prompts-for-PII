@@ -1,27 +1,17 @@
-Understood. I'll incorporate the mention of product names to help in understanding the functionality of the features but ensure the feature categorization isn't solely based on the product names. Here's the revised prompt:
+Given the list of product features, categorize the features into logical categories based on their inherent functionalities and characteristics. The provided product names are only for contextual understanding and should not dictate the categorization. Ensure the categories are clear, concise, and functionally relevant. The features within each category should be closely related. Provide the output in a dictionary format.
 
----
-
-**Prompt**:
-
-Given the list of product features and product names below, categorize the features into logical categories based on their functionalities. The product names are provided to give context about potential functionalities, but the features should not be categorized based on product names alone. Ensure the categories are clear, concise, and functionally relevant. The features within each category should be closely related. Provide the output in a dictionary format where the key represents the category name and the value is a list of features under that category.
-
-**Product Names**: 
+**For Contextual Understanding**:
+Product Names: 
 - [List of Product Names]
 
 **Product Features**:
 - [List of Features]
 
-**Example Output**:
+**Desired Output Format**:
 
 ```python
-categories = {
+categories = {{
     "Category Name 1": ["Feature 1", "Feature 2", ...],
     "Category Name 2": ["Feature A", "Feature B", ...],
     ...
-}
-```
-
----
-
-Replace "[List of Product Names]" with the product names and "[List of Features]" with the appropriate feature names for which you need categorization, and the model should provide a categorization in the format indicated by the example output.
+}}
