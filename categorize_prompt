@@ -1,0 +1,28 @@
+Certainly. Here's the revised prompt:
+
+---
+
+**Prompt**:
+
+Given the list of product features and product names below, categorize the features into logical categories that best fit the products. Ensure the categories are clear, concise, and relevant to the product names provided. The features within each category should be closely related. Provide the output in a dictionary format where the key represents the category name and the value is a list of features under that category.
+
+**Product Names**: 
+- wired phones
+- cellphones
+
+**Product Features**:
+- [List of Features]
+
+**Example Output**:
+
+```python
+categories = {
+    "Category Name 1": ["Feature 1", "Feature 2", ...],
+    "Category Name 2": ["Feature A", "Feature B", ...],
+    ...
+}
+```
+
+---
+
+Replace "[List of Features]" with the appropriate feature names for the product(s) you're categorizing, and the model should provide a categorization in the format indicated by the example output.
