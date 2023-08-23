@@ -6,17 +6,17 @@ For example:
 Input:
 
 ```
-features = ["Face ID", "OLED Display", "Waterproof", "Quick Charge"]
+features = ["Face ID", "OLED Display", "Waterproof", "Quick Charge", "Super AMOLED", "Facial Recognition Unlock", "TurboPower", "IP68"]
 ```
 
 Output:
 
 ```
 {{
-    "Display Technologies": ["OLED Display"],
-    "Unlocking Mechanisms": ["Face ID"],
-    "Water Resistance": ["Waterproof"],
-    "Charging Technologies": ["Quick Charge"]
+    "Display Technologies": ["OLED Display", "Super AMOLED", ......],
+    "Unlocking Mechanisms": ["Face ID", "Facial Recognition Unlock",....],
+    "Water and Dust Resistance": ["Waterproof", "IP68", ...],
+    "Charging Technologies": ["Quick Charge", "TurboPower", ...]
 }}
 ```
 
