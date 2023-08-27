@@ -1,22 +1,22 @@
 
+"Given the product description `{desc}`, your task is to extract all identifiable product specifications. Convert these into a JSON representation where the keys (feature names) are generalized, and the values are concise details extracted directly from the description. It's important to note that the provided example is purely for illustrative purposes; the actual feature names and values should be determined by the specific content and nature of the product description you're working with.
 
-"Given the product description {desc}, extract all identifiable product specifications. Convert these into a JSON representation where the keys (feature names) are kept generic, and the values are concise, pointed details from the description. Remember, the provided example is just a reference; your feature names and values might vary based on the exact nature and content of the product description given.
-
-For reference, if the description is:
+For instance, if the description is:
 
 'A true original – the classic French press coffee maker designed in the fifties. Features a frame and lid made of steel with chrome plating for a durable shiny surface that will last for many years of intense use, 8-cup capacity, and a handle designed for comfort. Recommended for use with fresh coarse ground coffee beans with water between 92 and 96° Celsius for the best results. Dimensions: 6-3/4" W x 9-3/4" H x 4-1/4" D',
 
-A possible JSON could be:
+A potential JSON output could be:
 
 ```json
 {{
   "Material": ["Steel", "Chrome plating"],
   "Capacity": ["8-cup"],
   "Handle": ["Comfortable"],
-  "Coffee": ["Coarse ground"],
-  "Temperature": ["92-96° Celsius"],
+  "Coffee Type": ["Coarse ground"],
+  "Water Temperature": ["92-96° Celsius"],
   "Dimensions": ["6-3/4\" W", "9-3/4\" H", "4-1/4\" D"]
 }}
 ```
 
-However, the structure of your JSON will be influenced by the specific product description you are working with."
+Please keep in mind that the feature names and values in your output should be directly based on the product description. The provided example is only a reference to guide your understanding."
+
