@@ -1,22 +1,22 @@
 
 
-"Given the product description {desc}, extract all identifiable product specifications. Then, convert these into a JSON representation where the keys (feature names) are generic, and the values are concise, pointed details derived from the description.
+"Given the product description {desc}, extract all identifiable product specifications. Convert these into a JSON representation where the keys (feature names) are kept generic, and the values are concise, pointed details from the description. Remember, the provided example is just a reference; your feature names and values might vary based on the exact nature and content of the product description given.
 
-For example, if the description is:
+For reference, if the description is:
 
 'A true original – the classic French press coffee maker designed in the fifties. Features a frame and lid made of steel with chrome plating for a durable shiny surface that will last for many years of intense use, 8-cup capacity, and a handle designed for comfort. Recommended for use with fresh coarse ground coffee beans with water between 92 and 96° Celsius for the best results. Dimensions: 6-3/4" W x 9-3/4" H x 4-1/4" D',
 
-Your JSON might be:
+A possible JSON could be:
 
 ```json
-{
+{{
   "Material": ["Steel", "Chrome plating"],
   "Capacity": ["8-cup"],
   "Handle": ["Comfortable"],
   "Coffee": ["Coarse ground"],
   "Temperature": ["92-96° Celsius"],
   "Dimensions": ["6-3/4\" W", "9-3/4\" H", "4-1/4\" D"]
-}
+}}
 ```
 
-Focus on capturing the essence of the product specifications while keeping the values brief and direct."
+However, the structure of your JSON will be influenced by the specific product description you are working with."
