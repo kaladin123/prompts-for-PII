@@ -1,0 +1,20 @@
+
+
+"Given the product description, extract all identifiable product specifications. Then, convert these into a JSON representation where both the keys (feature names) and the values are as generic as possible. For instance, if the description reads:
+
+'A true original – the classic French press coffee maker designed in the fifties. Features a frame and lid made of steel with chrome plating for a durable shiny surface that will last for many years of intense use, 8-cup capacity, and a handle designed for comfort. Recommended for use with fresh coarse ground coffee beans with water between 92 and 96° Celsius for the best results. Dimensions: 6-3/4" W x 9-3/4" H x 4-1/4" D',
+
+Your JSON might look something like:
+
+```json
+{
+  "Material": ["Metal"],
+  "Capacity": ["Multiple-cup"],
+  "Handle Design": ["Comfortable"],
+  "Coffee Type Recommendation": ["Coarse ground"],
+  "Water Temperature Recommendation": ["Hot"],
+  "Dimensions": ["Medium size"]
+}
+```
+
+Focus on distilling the essence of the product description into broad, generic terms for both the feature names and their associated values."
