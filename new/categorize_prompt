@@ -1,0 +1,18 @@
+
+"Given the features listed for {list of products}, provide consolidated categories in JSON format: {features}"
+
+Sample Input:
+"{list of products} = Laptops
+{features} = 15-inch Retina Display, Intel i7 Processor, 16GB RAM, 512GB SSD storage, NVIDIA GeForce 2080"
+
+Expected Output:
+```
+{
+  "Display": ["15-inch Retina Display"],
+  "Processor": ["Intel i7 Processor"],
+  "Memory": ["16GB RAM", "512GB SSD storage"],
+  "Graphics Card": ["NVIDIA GeForce 2080"]
+}
+```
+
+You can replace the `{list of products}` and `{features}` with your desired list of products and features to generate a customized JSON output.
