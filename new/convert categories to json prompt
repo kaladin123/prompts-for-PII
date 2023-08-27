@@ -1,0 +1,15 @@
+
+
+"Given the provided consolidated groupings of product features, structure the information into a JSON representation. Each main category should serve as the key, and the associated features should be listed in an array as the values. The format should resemble:
+
+```
+{
+"CategoryName": ["Feature1", "Feature2", ...],
+"AnotherCategory": ["FeatureA", "FeatureB", ...],
+...
+}
+```
+
+Using this guideline, please convert the following groupings into the desired JSON format:
+
+(Material: Housing Material, Boiler Material, Drip Tray Material, Grill Material, Carafe Material, ...)
