@@ -1,0 +1,532 @@
+Certainly. Let's start by enriching the "Name" validation prompt.
+
+---
+
+**Name Validation Task:**
+
+- **Objective:** Validate the presence of personal names coupled with their respective designations within the given paragraphs. Names might include titles such as "Dr.", "MD", or "PhD" to help with identification. Ensure that the redaction correctly identifies and masks individuals' names while avoiding reference names, company names, sponsor names, corporation names, and agency names.
+
+- **Scenario:** In clinical documents, it's common to encounter various names. For instance, a patient's name like "Dr. John Doe", or a researcher's name such as "Ema Watson, PhD". These names need to be redacted to protect privacy. However, names like "XYZ Pharmaceuticals" or "Dr. Smith's Research Institute" are organizational names and should not be redacted.
+
+**Input Format:**
+```
+redactions: {paragraph1: [Name], paragraph2: [Name],...}
+complete page text: {Text extracted from the complete page}
+```
+
+**Validation Example:**
+
+For a clinical note like:
+*Dr. John Doe consulted on the patient's cardiology needs. Pfizer Corporation sponsored the treatment. Reference: Dr. Robert Smith's Research on Cardiology.*
+
+If the bot redacts *Dr. John Doe* and *Dr. Robert Smith's Research on Cardiology*, it needs validation.
+
+Example output:
+
+```
+{
+Name: {
+        "Dr. John Doe": True, 
+        "Dr. Robert Smith's Research on Cardiology": False
+       }
+}
+```
+
+In this output, `True` indicates that the redaction is correct, while `False` signifies an incorrect redaction.
+
+---
+
+This enriched prompt sets a clear context and provides a comprehensive scenario which gives a better understanding of the task. You can replicate this methodology for the other categories as well.
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+Absolutely, let's enrich the "Occupation" validation prompt.
+
+---
+
+**Occupation Validation Task:**
+
+- **Objective:** Validate the redaction of occupational titles and details present within the given paragraphs. This includes non-academic titles (Jr., Sr.), academic/organizational titles (Dr., Professor, VIP, Director), academic qualifications (Ph.D., M.D.), and organizational departments associated with personal names. Ensure that such information is redacted appropriately to protect identities.
+
+- **Scenario:** In clinical documents, alongside names, it's common to encounter titles and roles that provide additional context about an individual's professional standing. For example, a mention like "Professor John Doe, Head of Cardiology" not only provides the name but also gives details about John's role and department. Such occupational details could be crucial in understanding the context but also need to be redacted to ensure privacy. Conversely, generic mentions of roles without association to a specific individual, such as "the director approved this" or "researchers have found," shouldn't be redacted.
+
+**Input Format:**
+```
+redactions: {paragraph1: [Occupation], paragraph2: [Occupation],...}
+complete page text: {Text extracted from the complete page}
+```
+
+**Validation Example:**
+
+For a clinical note like:
+*Professor John Doe, Head of Cardiology, concluded that the medication was effective. The directors of ABC Pharmaceuticals were also present.*
+
+If the bot redacts *Professor John Doe, Head of Cardiology* and *directors of ABC Pharmaceuticals*, it needs validation.
+
+Example output:
+```
+{
+Occupation: {
+              "Professor John Doe, Head of Cardiology": True,
+              "directors of ABC Pharmaceuticals": False
+            }
+}
+```
+
+Here, `True` indicates the redaction is correct and `False` points out an incorrect or unnecessary redaction.
+
+---
+
+By structuring the validation task in this detailed manner, it helps in setting clearer expectations and provides a robust framework for assessing redaction accuracy.
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+
+Alright, let's break down and enrich the "Contact Information" validation prompt, including its subcategories.
+
+---
+
+**Contact Information Validation Task:**
+
+- **Objective:** Validate the redaction of specific contact details present within the paragraphs. Ensure that only contact details directly associated with a person, subject, or patient are redacted while general organizational or public information remains untouched.
+
+- **Scenario:** In clinical documents, it's frequent to come across personal contact details like addresses, email IDs, and websites, especially when referencing patients or clinical researchers. For instance, "Patient John Doe's address is 123 Elm Street, New York," or "Contact Dr. Emma Watson at emma.watson@hospital.com." These personal details are sensitive and need to be redacted. In contrast, information like "Visit the hospital's website at www.hospital.com" isn't specific to an individual and should not be redacted.
+
+**Input Format:**
+```
+redactions: {paragraph1: [Contact Information - Address, Contact Information - Email & Website], paragraph2: [Contact Information - Email & Website],...}
+complete page text: {Text extracted from the complete page}
+```
+
+**Validation Example for Address:**
+
+For a clinical note:
+*Patient John Doe's address is 123 Elm Street, New York. Our hospital's address is 456 Maple Avenue, Los Angeles.*
+
+If the bot redacts *123 Elm Street, New York* and *456 Maple Avenue, Los Angeles*, it needs validation.
+
+Example output for Address:
+```
+{
+Contact Information - Address: {
+                                   "123 Elm Street, New York": True,
+                                   "456 Maple Avenue, Los Angeles": False
+                                 }
+}
+```
+
+**Validation Example for Email & Website:**
+
+For a clinical note:
+*For more details, contact Dr. Emma Watson at emma.watson@hospital.com. You can also visit www.hospital.com for more information.*
+
+If the bot redacts *emma.watson@hospital.com* and *www.hospital.com*, it needs validation.
+
+Example output for Email & Website:
+```
+{
+Contact Information - Email & Website: {
+                                           "emma.watson@hospital.com": True,
+                                           "www.hospital.com": False
+                                        }
+}
+```
+
+In these outputs, `True` signifies a correct redaction, whereas `False` indicates an unnecessary or incorrect redaction.
+
+---
+
+This enriched and broken-down prompt ensures clear understanding and granularity for the validation of redaction accuracy in the contact information category.
+
+
+---------------------------------------------------------------------------------------------------------------------------
+
+Certainly, let's detail and enrich the "Medical Keywords" validation prompt.
+
+---
+
+**Medical Keywords Validation Task:**
+
+- **Objective:** Validate the redaction of specific medical keywords present within the provided paragraphs. Ensure that disease names, medical conditions, and terms that reveal gender (e.g., "Menopause" or "Pregnancy") are correctly redacted. However, commonly used medical terms that aren't directly revealing a patient's sensitive information should be left unredacted.
+
+- **Scenario:** In clinical documents, mentions of specific diseases or medical conditions can be tied directly to a patient or individual, making it sensitive. For example, "Patient John Doe has been diagnosed with Diabetes" reveals a crucial medical condition about John. On the other hand, statements like "The research on Diabetes shows promising results" are general observations and should not be redacted.
+
+**Input Format:**
+```
+redactions: {paragraph1: [Medical Keywords], paragraph2: [Medical Keywords],...}
+complete page text: {Text extracted from the complete page}
+```
+
+**Validation Example:**
+
+For a clinical note:
+*Patient Jane Smith is currently experiencing symptoms of Menopause. Recent studies on Menopause show that it typically occurs between 45-55 years of age.*
+
+If the bot redacts *symptoms of Menopause* and *studies on Menopause*, it requires validation.
+
+Example output:
+```
+{
+Medical Keywords: {
+                       "symptoms of Menopause": True,
+                       "studies on Menopause": False
+                   }
+}
+```
+
+Here, `True` indicates that the redaction is appropriate, while `False` highlights an incorrect or unnecessary redaction.
+
+---
+
+By detailing the validation task in this manner, we are setting clear guidelines for the assessment of redaction accuracy specifically for medical keywords.
+
+-------------------------------------------------------------------------------------------------------------------------------------
+
+
+Of course! Let's detail and enrich the "Patient ID" validation prompt.
+
+---
+
+**Patient ID Validation Task:**
+
+- **Objective:** Validate the redaction of Patient or Subject IDs within the provided paragraphs. Make sure that when a mention of a patient or subject precedes an ID, it is redacted. However, ensure that generic numbers or IDs not linked to a patient or subject remain untouched.
+
+- **Scenario:** In clinical documents, specific identification numbers linked to patients or subjects are crucial markers of confidentiality. For example, "Patient John Doe's ID is JD12345" should have "JD12345" redacted. However, statements like "The equipment model number is EQ12345" should not be redacted as it isn't related to a patient's identity.
+
+**Input Format:**
+```
+redactions: {paragraph1: [Patient ID], paragraph2: [Patient ID],...}
+complete page text: {Text extracted from the complete page}
+```
+
+**Validation Example:**
+
+For a clinical note:
+*Patient Jane Smith's subject ID is JS67890. The sample was processed with Batch ID BID001.*
+
+If the bot redacts *JS67890* and *BID001*, it needs validation.
+
+Example output:
+```
+{
+Patient ID: {
+                "JS67890": True,
+                "BID001": False
+            }
+}
+```
+
+In this output, `True` signifies a correct redaction, whereas `False` indicates an unnecessary or incorrect redaction.
+
+---
+
+This structured and detailed prompt ensures a clear guideline for the validation of redaction accuracy, particularly for patient or subject IDs in clinical documents.
+
+--------------------------------------------------------------------------------------------------------------
+
+Certainly! Let's detail and enrich the "Demographics" validation prompt.
+
+---
+
+**Demographics Validation Task:**
+
+- **Objective:** Validate the redaction of specific demographic information, such as age, BMI, BSA, gender, and ethnicity/race, present within the provided paragraphs. Ensure that only data that's directly related to a patient, subject, or person is redacted, leaving generic demographic data untouched.
+
+- **Scenario:** In clinical documents, specific demographics related to a patient can be highly sensitive. For instance, "John Doe is a 30-year-old Caucasian male" reveals age, race, and gender about John and should be redacted accordingly. However, statements like "The majority of participants were males in the age group of 30-40" are general and should not be redacted.
+
+**Input Format:**
+```
+redactions: {paragraph1: [Age, Gender], paragraph2: [BMI, BSA],...}
+complete page text: {Text extracted from the complete page}
+```
+
+**Validation Example:**
+
+For a clinical note:
+*Jane Smith is a 28-year-old female with a BMI of 23. The study included 50% females and 50% males.*
+
+If the bot redacts "28-year-old female", "BMI of 23", and "50% females", the validation would be:
+
+Example output:
+```
+{
+Demographics: {
+                  "28-year-old": True,
+                  "female": True,
+                  "BMI of 23": True,
+                  "50% females": False
+               }
+}
+```
+
+In this output, `True` indicates a correct redaction, whereas `False` shows an unnecessary or incorrect redaction.
+
+---
+
+This prompt sets clear parameters for the validation of redaction accuracy specifically for demographic information in clinical documents.
+
+-------------------------------------------------------------------------------------------------------------
+
+Absolutely! Let's break down the "Demographics" validation task into its subcategories: Age, BMI, BSA, Gender, and Ethnicity/Race.
+
+---
+
+**1. Age Validation Task:**
+
+- **Objective:** Validate the redaction of age-specific data present within the paragraphs when related directly to a patient or individual.
+
+- **Scenario:** "Jane Smith is 28 years old" should have "28 years old" redacted. However, "The majority of participants were aged between 30-40" shouldn't be redacted.
+
+**Input Format:**
+```
+redactions: {paragraph1: [Age], paragraph2: [Age],...}
+complete page text: {Text extracted from the complete page}
+```
+
+**Validation Example:**
+*Jane Smith is a 28-year-old female.*
+
+If the bot redacts "28-year-old":
+```
+{
+Age: {
+       "28-year-old": True
+     }
+}
+```
+
+---
+
+**2. BMI Validation Task:**
+
+- **Objective:** Validate the redaction of BMI data that's related to a specific individual.
+
+- **Scenario:** "Jane Smith has a BMI of 23" should have "BMI of 23" redacted. However, "The average BMI of participants was 25" shouldn't be redacted.
+
+**Input Format:**
+```
+redactions: {paragraph1: [BMI], paragraph2: [BMI],...}
+complete page text: {Text extracted from the complete page}
+```
+
+**Validation Example:**
+*Jane Smith has a BMI of 23.*
+
+If the bot redacts "BMI of 23":
+```
+{
+BMI: {
+       "BMI of 23": True
+     }
+}
+```
+
+---
+
+**3. BSA Validation Task:**
+
+- **Objective:** Validate the redaction of BSA (Body Surface Area) data related to a specific individual.
+
+- **Scenario:** "John's BSA was measured at 1.9 m^2" should have "BSA of 1.9 m^2" redacted.
+
+**Input Format:**
+```
+redactions: {paragraph1: [BSA], paragraph2: [BSA],...}
+complete page text: {Text extracted from the complete page}
+```
+
+**Validation Example:**
+*John's BSA was measured at 1.9 m^2.*
+
+If the bot redacts "BSA of 1.9 m^2":
+```
+{
+BSA: {
+       "BSA of 1.9 m^2": True
+     }
+}
+```
+
+---
+
+**4. Gender Validation Task:**
+
+- **Objective:** Validate the redaction of gender-specific keywords directly related to an individual.
+
+- **Scenario:** "Jane Smith is female" should have "female" redacted. However, "The group comprised 60% females" shouldn't be redacted.
+
+**Input Format:**
+```
+redactions: {paragraph1: [Gender], paragraph2: [Gender],...}
+complete page text: {Text extracted from the complete page}
+```
+
+**Validation Example:**
+*Jane Smith is female.*
+
+If the bot redacts "female":
+```
+{
+Gender: {
+          "female": True
+        }
+}
+```
+
+---
+
+**5. Ethnicity/Race Validation Task:**
+
+- **Objective:** Validate the redaction of ethnicity or race-specific data directly linked to an individual.
+
+- **Scenario:** "John Doe is of Hispanic origin" should have "Hispanic origin" redacted. However, "Most participants were of Hispanic origin" shouldn't be redacted.
+
+**Input Format:**
+```
+redactions: {paragraph1: [Ethnicity/Race], paragraph2: [Ethnicity/Race],...}
+complete page text: {Text extracted from the complete page}
+```
+
+**Validation Example:**
+*John Doe is of Hispanic origin.*
+
+If the bot redacts "Hispanic origin":
+```
+{
+Ethnicity/Race: {
+                   "Hispanic origin": True
+                }
+}
+```
+
+---
+
+These detailed prompts for each demographic subcategory provide clear guidelines for the validation of redaction accuracy in clinical documents.
+
+------------------------------------------------------------------------------------------------------------------------
+Certainly! Let's break down the "Others" category into its subcategories: Immediate Family and Program Paths.
+
+---
+
+**1. Immediate Family Validation Task:**
+
+- **Objective:** Validate if terms indicating immediate family members, when associated directly with a patient or individual, have been redacted appropriately.
+
+- **Scenario:** "Jane Smith's father is diabetic" should have "father" redacted. However, "Many fathers in the study group have diabetes" shouldn't be redacted.
+
+**Input Format:**
+```
+redactions: {paragraph1: [Immediate Family], paragraph2: [Immediate Family],...}
+complete page text: {Text extracted from the complete page}
+```
+
+**Validation Example:**
+*Jane Smith's father is diabetic.*
+
+If the bot redacts "father":
+```
+{
+Immediate Family: {
+                      "father": True
+                  }
+}
+```
+
+---
+
+**2. Program Paths Validation Task:**
+
+- **Objective:** Validate if program paths have been redacted properly, especially when they're preceded by keywords like "project source:" or "source".
+
+- **Scenario:** "The project source: //c/downloads/test.sas was accessed" should have "//c/downloads/test.sas" redacted. However, "Always ensure that your sources are saved in a directory" shouldn't be redacted.
+
+**Input Format:**
+```
+redactions: {paragraph1: [Program Paths], paragraph2: [Program Paths],...}
+complete page text: {Text extracted from the complete page}
+```
+
+**Validation Example:**
+*The project source: //c/downloads/test.sas was accessed.*
+
+If the bot redacts "//c/downloads/test.sas":
+```
+{
+Program Paths: {
+                   "//c/downloads/test.sas": True
+               }
+}
+```
+
+---
+
+These validation prompts for the subcategories under "Others" ensure a focused assessment of redaction accuracy in clinical documents for specific types of personal information.
+
+-------------------------------------------------------------------------------------------------------
+
+
+Certainly! Let's craft a validation prompt for the "Dates" category.
+
+---
+
+**Dates Validation Task:**
+
+- **Objective:** Validate if specific dates associated directly with a patient or individual have been redacted appropriately.
+
+- **Scenario:** "Patient John Doe had surgery on 12th January 2022" should have "12th January 2022" redacted. However, "The hospital was inaugurated on 1st April 2000" shouldn't necessarily be redacted unless directly related to an individual's personal health information.
+
+**Input Format:**
+```
+redactions: {paragraph1: [Dates], paragraph2: [Dates],...}
+complete page text: {Text extracted from the complete page}
+```
+
+**Validation Example:**
+*Patient John Doe had surgery on 12th January 2022.*
+
+If the bot redacts "12th January 2022":
+```
+{
+Dates: {
+          "12th January 2022": True
+       }
+}
+```
+
+---
+
+This validation prompt ensures that any date which can be linked to an individual's personal or health information is assessed for accurate redaction in clinical documents.
+
+----------------------------------------------------------------------------------------------------------------
+Certainly! Let's craft a validation prompt for the "Gender-specific" category.
+
+---
+
+**Gender-specific Validation Task:**
+
+- **Objective:** Validate if gender-specific terms that are associated directly with a patient or individual have been redacted appropriately.
+
+- **Scenario:** In the statement "Patient IM33234GM is male and 23 years old," the term "male" should be redacted. However, in a general statement like "The study was conducted on both male and female participants," there's no direct association, so it wouldn't necessarily need redaction.
+
+**Input Format:**
+```
+redactions: {paragraph1: [Gender-specific], paragraph2: [Gender-specific],...}
+complete page text: {Text extracted from the complete page}
+```
+
+**Validation Example:**
+*Patient IM33234GM is male and 23 years old.*
+
+If the bot redacts "male":
+```
+{
+Gender-specific: {
+                      "male": True
+                  }
+}
+```
+
+---
+
+This validation prompt ensures that gender-specific terms which can be tied to an individual's identity are verified for accurate redaction in clinical documents.
+
