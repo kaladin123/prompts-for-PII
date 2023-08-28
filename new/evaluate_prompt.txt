@@ -1,1 +1,5 @@
+"Evaluate the following dictionary to determine if the values are related to their respective features. Provide a JSON object indicating whether each value is related to its corresponding feature:
+
+Input Dictionary: {feature1: value1, feature2: value2, feature3: value3, ...}"
+
 
