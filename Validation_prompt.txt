@@ -1,0 +1,27 @@
+
+Given the regulations of the Health Insurance Portability and Accountability Act (HIPAA), 21 CFR Part 11, Clinical Trial Data Sharing (CTDS) standards set by authorities like the FDA and EMA, General Data Protection Regulation (GDPR), and other country-specific local/regional guidelines:
+
+*Context*:
+Here is the full page text from the document: "[INSERT FULL PAGE TEXT HERE]".
+
+*Redacted Segments to Analyze*:
+- Segment: "[INSERT REDACTED SEGMENT 1 HERE]", Suggested PII: "[INSERT SUGGESTED PII FOR SEGMENT 1]"
+- Segment: "[INSERT REDACTED SEGMENT 2 HERE]", Suggested PII: "[INSERT SUGGESTED PII FOR SEGMENT 2]"
+... [and so on]
+
+*Question*: 
+Analyze the provided redacted segments within the context of the full page text, keeping in mind the specific PII data points mentioned for each segment. Based on the aforementioned regulations, determine if the suggested PII data points are indeed present in these redacted segments and if the redactions are in accordance with the data protection and privacy standards mentioned above.
+
+*Expected Output Format*:
+Please provide the analysis result in the following JSON format: 
+
+```json
+"redacted_segments": [
+    {
+        "text": "<text_of_segment>",
+        "suggested_PII": "<suggested_PII>",
+        "analysis_result": "<result>",
+        "justification": "<justification_for_result>"
+    }
+]
+```
