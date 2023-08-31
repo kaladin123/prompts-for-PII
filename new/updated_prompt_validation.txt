@@ -1,0 +1,95 @@
+Given the following Redaction Guidelines for PII in Clinical Data:
+
+``` 
+**Redaction Guidelines for PII in Clinical Data**
+**1. Name Redaction**
+- **Purpose:** Avoid identification through personal names and their affiliations.
+- **Action:** Remove all individual names, regardless of academic or professional titles attached (e.g., "John Doe, MD").
+- **Regulation Context:** Both HIPAA and GDPR classify individual names as primary identifiers that should be kept confidential.
+
+**2. Occupation Specifics**
+- **Purpose:** Prevent revealing someone's identity through their profession.
+- **Action:** Erase unique and specific job titles or roles that, when combined with other data, might identify an individual.
+- **Regulation Context:** HIPAA advises that certain professions, especially in niche fields, can uniquely identify individuals.
+
+**3. Protecting Contact Details**
+- **Purpose:** Guard against direct outreach to subjects.
+- **Action:** Completely erase email addresses, residential addresses, phone numbers, and personal URLs.
+- **Regulation Context:** HIPAA and GDPR consider direct communication channels like emails and phone numbers as primary identifiers.
+
+**4. Safeguarding Medical Details**
+- **Purpose:** Protect a patient's private health information.
+- **Action:** Remove or de-identify medical terms that divulge a person's unique health condition, treatment, or genetic data.
+- **Regulation Context:** Under GDPR and HIPAA, medical data, especially genetic details, are seen as high-risk PII due to their inherent sensitivity.
+
+**5. Anonymizing Patient IDs**
+- **Purpose:** Secure a patient's unique identity in the medical system.
+- **Action:** Substitute direct patient IDs with non-reversible codes or pseudonyms. The correlation between codes and real IDs should be kept separately and securely.
+- **Regulation Context:** For patient security, HIPAA recommends using pseudonyms, and 21 CFR Part 11 demands systems that capture such data to have stringent access controls.
+
+**6. Demographic Data Handling**
+- **Purpose:** Prevent identification via demographic combinations.
+- **Action:** Erase or generalize data combinations like age, gender, BMI, and race that can narrow down individual identities.
+- **Regulation Context:** As per HIPAA, aggregated demographic details can risk revealing identities, especially in smaller datasets.
+
+**7. Additional Identifiers**
+- **Purpose:** Guard against indirect identification methods.
+- **Action:** Remove references to familial relationships tied to a specific individual and specific software paths that might be traceable.
+- **Regulation Context:** HIPAA and GDPR consider any unique characterizations or codes as potential PII.
+
+**8. Generalizing Date Information**
+- **Purpose:** Safeguard personal events or timelines.
+- **Action:** Convert specific dates to broader formats (e.g., change "January 1, 2020" to "2020") or remove them.
+- **Regulation Context:** HIPAA considers granular date data as PII, especially when it's tied to personal events.
+
+**9. Gender References**
+- **Purpose:** Safeguard against gender-based identification.
+- **Action:** Omit gender-specific pronouns unless they're critical to clinical data understanding.
+- **Regulation Context:** Gender details, when not clinically relevant, are considered sensitive by both HIPAA and GDPR.
+
+**10. Limiting Geographic Data**
+- **Purpose:** Guard against location-based identification.
+- **Action:** Redact any geographic data more specific than state or province level.
+- **Regulation Context:** To prevent localization of individuals, HIPAA advises against sharing granular geographic data.
+
+**11. Personal Images & Biometric Info**
+- **Purpose:** Safeguard unique physical identifiers.
+- **Action:** Ensure personal images, voice recordings, or biometric data (like fingerprints) are either not included or are heavily de-identified.
+- **Regulation Context:** Biometric details are considered high-risk PII under both HIPAA and GDPR due to their uniqueness.
+
+**12. Device & Software Identifiers**
+- **Purpose:** Avoid linking individuals to specific devices or software.
+- **Action:** Erase all unique identifiers tied to medical devices or applications used on patients.
+- **Regulation Context:** HIPAA warns that unique electronic or device IDs can become direct identifiers.
+
+**13. Ensuring Audit Trails**
+- **Purpose:** Maintain data integrity while ensuring user accountability.
+- **Action:** Create secure, accurate, and timestamped audit trails for any PII data access or modification, with limited accessibility.
+- **Regulation Context:** 21 CFR Part 11 mandates proper, secure electronic audit trails to track data access and alterations.
+```
+
+*Context*:
+Here is the full page text from the document: "[INSERT FULL PAGE TEXT HERE]".
+
+*Redacted Segments to Analyze*:
+- Segment: "[INSERT REDACTED SEGMENT 1 HERE]", Suggested PII: "[INSERT SUGGESTED PII FOR SEGMENT 1]"
+- Segment: "[INSERT REDACTED SEGMENT 2 HERE]", Suggested PII: "[INSERT SUGGESTED PII FOR SEGMENT 2]"
+... [and so on]
+
+*Question*: 
+Analyze the provided redacted segments within the context of the full page text, taking into account the specific Redaction Guidelines for PII in Clinical Data. Based on these guidelines and the related regulations, determine if the suggested PII data points are indeed present in these redacted segments and if the redactions are in accordance with the data protection and privacy standards mentioned above.
+
+*Expected Output Format*:
+Please provide the analysis result in the following JSON format: 
+
+```json
+"redacted_segments": [
+    {
+        "text": "<text_of_segment>",
+        "suggested_PII": "<suggested_PII>",
+        "analysis_result": "<result>",
+        "justification": "<justification_for_result>"
+    }
+]
+```
+
