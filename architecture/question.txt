@@ -1,1 +1,24 @@
+**System Design for Efficient PDF Processing with Microservices**
+
+Given a database with a table containing columns for:
+1. AWS S3 path to a PDF file.
+2. Status of the PDF file (e.g., processed, processing, completed).
+3. Unique ID for each PDF file.
+4. Insertion order of the PDF files.
+
+I want to design a system that:
+1. Fetches the PDF from the specified S3 path.
+2. Extracts text content from each page using AWS Textract.
+3. Employs AWS Comprehend to identify names and addresses on each page.
+4. Uses custom Python logic to identify PII data for each page.
+5. Structures the identified PII data into a dataframe for each page.
+6. Validates each page's PII data using large language models like ChatGPT-3 via an API call to OpenAI.
+7. Updates the PDF's status in the database once processing is complete.
+
+To optimize processing time, consider:
+- Reading multiple PDF files simultaneously from the database.
+- Processing each page individually, as there's no interdependency between pages' PII data.
+- Emphasizing page-level processing instead of document-level.
+
+Given the technology stack (AWS, Python, OpenAI GPT model) and the emphasis on high processing speed and maintainability, how can we design this system following a standard microservice architecture? Please provide a step-by-step architecture considering the nuances mentioned.
 
