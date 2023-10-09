@@ -1,0 +1,52 @@
+Alright, let's dive deeper into the process, using a detailed, step-by-step approach for a batch of 10,000 pages, exemplifying the journey of an individual page:
+
+```
+START
+|
+V
+[Scheduler Trigger]
+  --> AWS CloudWatch Events: Trigger set for every N minutes/hours based on the expected volume.
+|
+V
+[PDF Fetcher Service - AWS Lambda]
+  --> AWS RDS/DynamoDB: Query for PDFs with status "unprocessed" in insertion order.
+  --> Example: Fetches a PDF "Document_A.pdf" with 10,000 pages.
+  --> AWS S3: Read the "Document_A.pdf" from the specified path.
+  --> AWS SQS (PDFQueue): Create 10,000 messages in the queue, each corresponding to a page. E.g., "Document_A_Page_1", "Document_A_Page_2", ... , "Document_A_Page_10000".
+  --> AWS RDS/DynamoDB: Update the status of "Document_A.pdf" to "processing".
+|
+V
+[Text Extraction Service - AWS Lambda]
+  --> AWS SQS (PDFQueue): Lambda is triggered 10,000 times for each message. It will work concurrently due to Lambda's auto-scaling.
+  --> Example: One instance gets "Document_A_Page_1" message.
+  --> AWS Textract: Extract text from "Page 1" of "Document_A.pdf".
+  --> AWS SQS (TextExtractionQueue): Sends a message with the extracted text of "Document_A_Page_1" for PII identification.
+|
+V
+[PII Identification Service - AWS Lambda]
+  --> AWS SQS (TextExtractionQueue): Another Lambda instance listens for extracted text.
+  --> Example: It picks up the text from "Document_A_Page_1".
+  --> AWS Comprehend: Identify potential names and addresses from the text.
+  --> Custom Python Logic in Lambda: Identifies additional PII data, such as phone numbers or social security numbers.
+  --> AWS SQS (PIIQueue): Sends the identified PII data of "Document_A_Page_1" for validation.
+|
+V
+[Validation Service - AWS Lambda]
+  --> AWS SQS (PIIQueue): Yet another Lambda instance awaits for PII data.
+  --> Example: It receives the PII data from "Document_A_Page_1".
+  --> OpenAI API with GPT model: Validates the PII data by checking its context, ensuring it truly is PII.
+  --> AWS SQS (ValidationQueue): Sends the validated PII data of "Document_A_Page_1" for integration.
+|
+V
+[Data Integration Service - AWS Lambda]
+  --> AWS SQS (ValidationQueue): Another Lambda instance awaits for validated PII data.
+  --> Example: It processes the validated PII data from "Document_A_Page_1".
+  --> Python in Lambda: Structures the data into a dataframe format.
+  --> AWS S3: Saves the structured PII data of "Document_A_Page_1" into a designated bucket, e.g., under "Processed/Document_A/Page_1".
+  --> AWS RDS/DynamoDB: If this was the last page of "Document_A.pdf", the status of "Document_A.pdf" is updated to "completed".
+|
+V
+END
+```
+
+Here, we're considering the asynchronous processing of a single page, but in reality, with the power of AWS Lambda and SQS, many of these steps would be happening concurrently for multiple pages. This is what enables the rapid processing of a large batch of 10,000 pages.
