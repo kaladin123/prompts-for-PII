@@ -1,0 +1,55 @@
+from opensearchpy import OpenSearch, RequestsHttpConnection
+from requests_aws4auth import AWS4Auth
+import boto3
+
+# AWS credentials
+region = 'your-region'  # e.g. 'us-west-1'
+service = 'es'
+awsauth = AWS4Auth(
+    boto3.Session().get_credentials().access_key,
+    boto3.Session().get_credentials().secret_key,
+    region, service,
+    session_token=boto3.Session().get_credentials().token
+)
+
+# OpenSearch configuration
+host = 'your-opensearch-domain-endpoint'  # without http:// or https://
+index = 'your-index'
+doc_type = '_doc'  # or your custom doc type
+
+# Initialize OpenSearch client
+opensearch = OpenSearch(
+    hosts=[{'host': host, 'port': 443}],
+    http_auth=awsauth,
+    use_ssl=True,
+    verify_certs=True,
+    connection_class=RequestsHttpConnection
+)
+
+def upsert_document(unique_id, document_data):
+    try:
+        # Check if the document exists
+        response = opensearch.get(index=index, doc_type=doc_type, id=unique_id, ignore=[404])
+        exists = False if response['found'] == False else True
+        
+        # Upsert (insert if not exists, else update)
+        if exists:
+            # Update the document
+            opensearch.update(index=index, doc_type=doc_type, id=unique_id, body={'doc': document_data})
+        else:
+            # Insert the document
+            opensearch.index(index=index, doc_type=doc_type, id=unique_id, body=document_data)
+        
+        return "Document upserted successfully."
+    except Exception as e:
+        return f"An error occurred: {e}"
+
+# Example usage
+document_id = '123'
+document_body = {
+    'field1': 'value1',
+    'field2': 'value2'
+}
+
+result = upsert_document(document_id, document_body)
+print(result)
